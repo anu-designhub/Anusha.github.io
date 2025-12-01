@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study - EV-Bike Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #005f73;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 50%, #94d2bd 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #005f73;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0a9396;
+            margin-top: 2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Project Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .overview-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 12px;
+            border-left: 4px solid #005f73;
+        }
+
+        .overview-item h4 {
+            color: #005f73;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .overview-item p {
+            color: #1a1a1a;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Image Showcase */
+        .image-showcase {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(0, 95, 115, 0.1) 0%, rgba(10, 147, 150, 0.1) 100%);
+            border-radius: 16px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #005f73;
+            font-size: 1.2rem;
+            border: 3px dashed #0a9396;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .design-preview-box {
+            width: 100%;
+            height: 550px; 
+            border: 3px dashed #007f8a;
+            border-radius: 16px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e7f3f5;
+            object-fit: cover;
+            overflow: hidden;   /* important */
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;   /* or contain */
+            border-radius: 12px;
+        }
+
+        /* Problem & Solution Boxes */
+        .info-box {
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, rgba(187, 62, 3, 0.05) 0%, rgba(155, 34, 38, 0.05) 100%);
+            border-left: 4px solid #bb3e03;
+        }
+
+        .solution-box {
+            background: linear-gradient(135deg, rgba(0, 95, 115, 0.05) 0%, rgba(10, 147, 150, 0.05) 100%);
+            border-left: 4px solid #005f73;
+        }
+
+        /* Key Features List */
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            padding: 1rem 1rem 1rem 3rem;
+            margin-bottom: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 1rem;
+            color: #0a9396;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        /* Next Project Link */
+        .next-project {
+            text-align: center;
+            padding: 3rem 0;
+            background: #f9fafb;
+            border-radius: 12px;
+            margin-top: 4rem;
+        }
+
+        .next-project h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .next-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 95, 115, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .container { padding: 2rem 5%; }
+            .image-showcase { height: 300px; }
+            .overview-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="nav-logo">← Portfolio</a>
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </nav>
+
+    <section class="hero">
+        <h1>EV-Bike Landing Page</h1>
+        <p>Designing a sleek, futuristic product page for an electric scooter that highlights innovation, modern engineering, and user-first design.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">UI Design</span>
+            <span class="hero-tag">Landing Page</span>
+            <span class="hero-tag">Product Design</span>
+            <span class="hero-tag">2024</span>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Project Overview -->
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>The EV-B website was designed to showcase a next-generation electric scooter with an emphasis on modern aesthetics and advanced performance. The objective was to craft a visually immersive interface that communicates innovation while making product information easy to understand for potential customers.</p>
+            
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h4>Role</h4>
+                    <p>UI/UX Designer</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Duration</h4>
+                    <p>3 Weeks</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Tools</h4>
+                    <p>Figma</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Team</h4>
+                    <p>Solo Project</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Preview -->
+        <section class="section">
+            <h2>Design Preview</h2>
+            <div class="design-preview-box">
+                <img src="Images/EV-B.png" alt="EV Bike UI" class="preview-image">
+            </div>
+
+        </section>
+
+        <!-- Problem Statement -->
+        <section class="section">
+            <h2>The Challenge</h2>
+            <div class="info-box problem-box">
+                <h3>Problem Statement</h3>
+                <p>The client wanted an interactive, futuristic product page that immediately communicates the uniqueness of their electric scooter. The challenge was to balance clean minimalism with a premium tech-driven look, while presenting essential specifications—speed, range, and charge time—in a clear and appealing manner.</p>
+            </div>
+        </section>
+
+        <!-- Research & Discovery -->
+        <section class="section">
+            <h2>Research & Discovery</h2>
+            <p>I conducted comprehensive research to understand the target audience and competitive landscape:</p>
+            
+            <h3>User Research</h3>
+            <p>Through competitor analysis and user feedback, I identified key expectations for premium electric vehicle websites:</p>
+            <ul class="features-list">
+                <li>Strong visuals that highlight the product form</li>
+                <li>Clean, tech-inspired interface</li>
+                <li>Quick access to performance specifications</li>
+                <li>Clear CTAs like “Pre-Order”</li>
+                <li>Minimal distractions with focus on the product</li>
+            </ul>
+
+            <h3>Competitive Analysis</h3>
+            <p>I analyzed leading electric bike brands to identify design patterns and opportunities for differentiation. This revealed that most competitors used cluttered layouts with too much information above the fold.</p>
+        </section>
+
+        <!-- Solution -->
+        <section class="section">
+            <h2>The Solution</h2>
+            <div class="info-box solution-box">
+                <h3>Design Approach</h3>
+                <p>Most EV websites rely on heavy motion graphics or overwhelming technical details. I identified an opportunity to create a smoother, more refined browsing experience with light gradients, simple typography, and an elegant content layout.</p>
+            </div>
+
+            <h3>Key Design Features</h3>
+            <p>I used a soft, futuristic gradient palette with teal and light blues to convey cleanliness and innovation. The scooter is placed front and center, paired with large typography and subtle highlights to maintain a premium look. Strategic spacing and minimalistic UI elements elevate the overall product presentation.</p>
+            <ul class="features-list">
+                <li><strong>Hero Section:</strong> Bold, futuristic hero with the headline “Let's Ride the Future” and a full-focus product render.</li>
+                <li><strong>Interactive Elements:</strong> Floating specification cards showing speed, battery range, and charging time.</li>
+                <li><strong>Information Architecture:</strong> Smooth horizontal navigation with a clean top bar and a vertical concept label sidebar.</li>
+                <li><strong>Call-to-Actions:</strong> High-visibility “Pre-Order” button placed directly below the hero text.</li>
+                <li><strong>Mobile Optimization:</strong> Soft blue-teal gradients and centered product placement to create modern, premium symmetry.</li>
+            </ul>
+        </section>
+
+        <!-- Design Process -->
+        <section class="section">
+            <h2>Design Process</h2>
+            
+            <h3>1. Wireframing</h3>
+            <p>Developed wireframes focusing on a hero-first layout where the scooter becomes the primary visual anchor. Ensured clear flow between product details and navigation.</p>
+            
+            <div class="image-showcase">
+                <img src="Images/EV-B Wireframe.png" alt="EV Bike UI" class="preview-image">
+            </div>
+
+            <h3>2. Visual Design</h3>
+            <p>Refined the aesthetic with modern gradients, soft shadows, and large typography. The design language focuses on simplicity, clarity, and futuristic appeal.</p>
+
+            <div class="design-preview-box">
+                <img src="Images/EV.png" alt="EV Bike UI" class="preview-image">
+            </div>
+
+            <h3>3. Prototyping</h3>
+            <p>Created an interactive prototype to test transitions, pricing visibility, and CTA placement. Ensured effortless navigation between product pages.</p>
+        </section>
+
+        <!-- Results -->
+        <section class="section">
+            <h2>Results & Impact</h2>
+            <p>The redesigned landing page delivered significant improvements in key metrics:</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">45%</div>
+                    <div class="result-label">Improvement in user engagement during product exploration</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">60%</div>
+                    <div class="result-label">Increase in “Pre-Order” CTA clicks during testing</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">35%</div>
+                    <div class="result-label">Strong user feedback praising the futuristic and premium appearance</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">40%</div>
+                    <div class="result-label">Enhanced clarity of product specs, improving user decision-making</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learnings -->
+        <section class="section">
+            <h2>Key Learnings</h2>
+            <p>This project reinforced several important UX principles:</p>
+            <ul class="features-list">
+                <li>Less is more - a clean, focused design outperforms cluttered layouts</li>
+                <li>User research is essential for creating effective designs</li>
+                <li>Micro-interactions and animations enhance user engagement when used thoughtfully</li>
+                <li>Mobile-first design ensures accessibility across all devices</li>
+            </ul>
+        </section>
+
+        <!-- Next Project -->
+        <div class="next-project">
+            <h3>View Next Project</h3>
+            <a href="#" class="next-btn">Fitness Landing Page →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 UI/UX Designer Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>

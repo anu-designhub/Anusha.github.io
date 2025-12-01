@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 25%, #94d2bd 50%, #ee9b00 75%, #bb3e03 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* ----- RESET ----- */
+        *  {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Poppins, sans-serif;
+        }
+
+        /* ----- HOME BACKGROUND (YOUR EXACT GRADIENT) ----- */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Your background gradient */
+            background: linear-gradient(135deg, #007F8A 0%, #00A4A6 50%, #8CD1C1 100%);
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+        }
+
+        /* ----- HERO LAYOUT ----- */
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 90%;
+            max-width: 1300px;
+        }
+
+        /* ----- LEFT IMAGE ----- */
+        .hero-left {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 420px;
+            max-height: 420px;
+            object-fit: contain;  /* keeps hole image visible*/
+            border-radius: 20px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+            margin-left: 40px;
+            animation: floatImage 6s ease-in-out infinite;
+        }
+
+        /* Floating animation */
+        @keyframes floatImage {
+            0%   { transform: translateY(0px) scale(1); }
+            50%  { transform: translateY(-12px) scale(0.9); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        /* ----- RIGHT TEXT ----- */
+        .hero-right {
+            flex: 1;
+            text-align: left;
+        }
+
+        .greeting {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+            background: none;
+            opacity: 1;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: none;
+            color: #001219;
+            -webkit-text-fill-color: #001219; /* for webkit browsers */
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            opacity: 1;
+        }
+
+        .hero-title .name {
+            color: #001219;
+            animation: none;
+        }
+
+        .subtitle {
+            font-size: 22px;
+            opacity: 1;
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+            background: none;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 900px) {
+            .hero-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-right {
+                text-align: center;
+            }
+
+            .hero-img {
+                max-width: 80%;
+            }
+
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .greeting {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+
+        /* About Section */
+        #about {
+            background: #ffffff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            text-align: left;
+        }
+
+        .about-image-box {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 50%, #94d2bd 100%);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ak-logo {
+            width: 220px;
+            opacity: 0.14;
+            filter: brightness(0) invert(1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ca6702 0%, #bb3e03 100%);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 95, 115, 0.4);
+        }
+
+        /* Skills Section */
+        #skills {
+            background: linear-gradient(135deg, #f9fafb 0%, #e9f5f6 100%);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:nth-child(1) {
+            background: linear-gradient(135deg, rgba(0, 95, 115, 0.05) 0%, rgba(10, 147, 150, 0.05) 100%);
+            border-left: 4px solid #005f73;
+        }
+
+        .skill-card:nth-child(2) {
+            background: linear-gradient(135deg, rgba(238, 155, 0, 0.05) 0%, rgba(202, 103, 2, 0.05) 100%);
+            border-left: 4px solid #ee9b00;
+        }
+
+        .skill-card:nth-child(3) {
+            background: linear-gradient(135deg, rgba(10, 147, 150, 0.05) 0%, rgba(148, 210, 189, 0.05) 100%);
+            border-left: 4px solid #0a9396;
+        }
+
+        .skill-card h3 {
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+
+        .skill-card:nth-child(1) h3 {
+            color: #005f73;
+        }
+
+        .skill-card:nth-child(2) h3 {
+            color: #ee9b00;
+        }
+
+        .skill-card:nth-child(3) h3 {
+            color: #0a9396;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:nth-child(1)::before {
+            background: linear-gradient(90deg, #005f73 0%, #0a9396 100%);
+        }
+
+        .skill-card:nth-child(2)::before {
+            background: linear-gradient(90deg, #ee9b00 0%, #ca6702 100%);
+        }
+
+        .skill-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #0a9396 0%, #94d2bd 100%);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card:nth-child(1):hover {
+            box-shadow: 0 10px 30px rgba(0, 95, 115, 0.2);
+        }
+
+        .skill-card:nth-child(2):hover {
+            box-shadow: 0 10px 30px rgba(238, 155, 0, 0.2);
+        }
+
+        .skill-card:nth-child(3):hover {
+            box-shadow: 0 10px 30px rgba(10, 147, 150, 0.2);
+        }
+
+        .skill-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-card:nth-child(1) .skill-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #005f73;
+            font-weight: bold;
+        }
+
+        .skill-card:nth-child(2) .skill-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ee9b00;
+            font-weight: bold;
+        }
+
+        .skill-card:nth-child(3) .skill-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0a9396;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: #ffffff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            background-size: 200% 200%;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 300;
+            transition: background-position 0.5s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-image .number {
+            position: absolute;
+            font-size: 3rem;
+            font-weight: 300;
+            color: white;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .project-card:nth-child(1) .project-image {
+            background: linear-gradient(135deg, rgba(0, 95, 115, 0.7) 0%, rgba(10, 147, 150, 0.7) 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-card:nth-child(1) .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23c5e4e7" width="400" height="300"/><ellipse cx="200" cy="200" rx="180" ry="120" fill="%23e0f2f4"/><rect x="100" y="100" width="30" height="80" rx="15" fill="%23333"/><rect x="110" y="50" width="10" height="60" rx="5" fill="%23333"/><rect x="270" y="100" width="30" height="80" rx="15" fill="%23333"/><circle cx="150" cy="160" r="40" fill="%23222"/><circle cx="250" cy="160" r="40" fill="%22222"/><text x="200" y="250" font-size="20" fill="%23005f73" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">E-BIKE</text></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .project-card:nth-child(2) .project-image {
+            background: linear-gradient(135deg, rgba(187, 62, 3, 0.7) 0%, rgba(155, 34, 38, 0.7) 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-card:nth-child(2) .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23f5d5d0" width="400" height="300"/><circle cx="150" cy="150" r="60" fill="none" stroke="%239b2226" stroke-width="8"/><circle cx="250" cy="150" r="60" fill="none" stroke="%239b2226" stroke-width="8"/><rect x="140" y="90" width="20" height="120" fill="%23bb3e03"/><rect x="240" y="90" width="20" height="120" fill="%23bb3e03"/><text x="200" y="250" font-size="24" fill="%239b2226" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">FITNESS</text></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .project-card:nth-child(3) .project-image {
+            background: linear-gradient(135deg, rgba(10, 147, 150, 0.7) 0%, rgba(148, 210, 189, 0.7) 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-card:nth-child(3) .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23d4f1e8" width="400" height="300"/><path d="M 100 200 Q 150 100 200 150 T 300 200" fill="none" stroke="%230a9396" stroke-width="4"/><circle cx="200" cy="100" r="50" fill="%2394d2bd"/><circle cx="200" cy="100" r="35" fill="%23fff"/><path d="M 180 90 L 190 110 L 170 100 Z" fill="%230a9396"/><text x="200" y="270" font-size="20" fill="%230a9396" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">TRAVEL</text></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .project-card:nth-child(4) .project-image {
+            background: linear-gradient(135deg, rgba(238, 155, 0, 0.7) 0%, rgba(202, 103, 2, 0.7) 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-card:nth-child(4) .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23ffecd1" width="400" height="300"/><rect x="100" y="80" width="200" height="150" fill="%23fff" stroke="%23ca6702" stroke-width="4"/><rect x="120" y="100" width="60" height="50" fill="%23e9d8a6"/><rect x="220" y="100" width="60" height="50" fill="%23e9d8a6"/><path d="M 200 60 L 250 80 L 200 80 Z" fill="%23ee9b00"/><path d="M 200 60 L 150 80 L 200 80 Z" fill="%23ca6702"/><circle cx="160" cy="240" r="8" fill="%23ee9b00"/><text x="200" y="280" font-size="18" fill="%23ca6702" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">INTERIOR</text></svg>') center/contain no-repeat;
+            opacity: 0.3;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 2px solid;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-btn.primary {
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .project-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 95, 115, 0.3);
+        }
+
+        .project-btn.secondary {
+            background: transparent;
+            color: #005f73;
+            border-color: #005f73;
+        }
+
+        .project-btn.secondary:hover {
+            background: #005f73;
+            color: white;
+        }
+
+        .project-btn.tertiary {
+            background: transparent;
+            color: #0a9396;
+            border-color: #0a9396;
+        }
+
+        .project-btn.tertiary:hover {
+            background: #0a9396;
+            color: white;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9f5f6 100%);
+        }
+
+        .contact-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            color: #667eea;
+            text-align: center;
+        }
+
+        .contact-content > .description {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .contact-card:nth-child(2) .contact-icon {
+            background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+        }
+
+        .contact-card:nth-child(3) .contact-icon {
+            background: linear-gradient(135deg, #ee9b00 0%, #ca6702 100%);
+        }
+
+        .contact-card:nth-child(4) .contact-icon {
+            background: linear-gradient(135deg, #bb3e03 0%, #9b2226 100%);
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .contact-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-card:nth-child(2) a {
+            color: #005f73;
+        }
+
+        .contact-card:nth-child(3) a {
+            color: #ee9b00;
+        }
+
+        .contact-card:nth-child(4) a {
+            color: #bb3e03;
+        }
+
+        .contact-card a:hover {
+            opacity: 0.7;
+        }
+
+        .contact-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            display: none;
+        }
+
+        .form-group {
+            display: none;
+        }
+
+        .form-buttons {
+            display: none;
+        }
+
+        .form-btn {
+            display: none;
+        }
+
+        .contact-links {
+            display: none;
+        }
+
+        .contact-link {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            nav ul { gap: 1.5rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-buttons { flex-direction: column; }
+            .project-buttons { justify-content: center; }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="hero-inner">
+
+            <!-- LEFT IMAGE -->
+            <div class="hero-left">
+                <img src="Images/Title.png" alt="Anusha Portfolio" class="hero-img">
+            </div>
+
+            <!-- RIGHT TEXT -->
+            <div class="hero-right">
+                <h2 class="greeting">Hi! I'm</h2>
+                <h1 class="hero-title">
+                    <span class="name">Anusha Kulkarni</span><br>
+                    UI/UX Designer
+                </h1>
+                <p class="subtitle">Creating intuitive and beautiful digital experiences</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!--ABOUT SECTION-->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="animate-on-scroll">About Me</h2>
+                    <p class="description animate-on-scroll animate-delay-1">
+                        I'm a UI/UX Designer who believes design should be purposeful, intuitive, and visually engaging. 
+                        I enjoy transforming ideas into meaningful experiences through research, wireframing, prototyping, and thoughtful interaction design in Figma.
+                    </p>
+                    <p class="description animate-on-scroll animate-delay-2">
+                        My approach focuses on clarity, consistency, and solving real user needs with creativity and intent. 
+                        I'm constantly exploring, learning, and refining my craft to create designs that feel seamless and memorable.
+                    </p>
+                    <a href="#" class="btn animate-on-scroll animate-delay-3">Download Resume</a>
+                </div>
+                <div class="about-image animate-on-scroll animate-delay-2">
+                    <div class="about-image-box">
+                        <img src="Images/Logo.png" alt="AK Logo" class="ak-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 style="text-align: center;">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Design Tools</h3>
+                    <ul class="skill-list">
+                        <li>Figma</li>
+                        <li>Adobe XD</li>
+                        <li>Sketch</li>
+                        <li>Photoshop</li>
+                        <li>Illustrator</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>UX Research</h3>
+                    <ul class="skill-list">
+                        <li>User Interviews</li>
+                        <li>Usability Testing</li>
+                        <li>Personas</li>
+                        <li>Journey Mapping</li>
+                        <li>A/B Testing</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Core Skills</h3>
+                    <ul class="skill-list">
+                        <li>Wireframing</li>
+                        <li>Prototyping</li>
+                        <li>UI Design</li>
+                        <li>Design Systems</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 style="text-align: center;">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace the src below with your actual EV-Bike image URL -->
+                        <img src="Images/EV-B.png" alt="EV-Bike Landing Page" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="number" style="display: none;">01</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>EV-Bike Landing Page</h3>
+                        <p class="description">Modern landing page design for electric bike product showcase with sleek aesthetics and engaging product presentation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Landing Page</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">UI Design</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="EV-B_Case-study.html" class="project-btn primary">📋 Case Study</a>
+                            <a href="https://www.figma.com/design/1HcRwRBRi0DLFWi5O1gm26/EV-B?node-id=0-1&t=l62XRNG8HOdN8ww5-1" class="project-btn secondary">🎨 Figma File</a>
+                            <a href="https://www.figma.com/proto/1HcRwRBRi0DLFWi5O1gm26/EV-B?page-id=0%3A1&node-id=1-2&p=f&viewport=165%2C391%2C0.55&t=07ZBdmJRKtIhkbtD-1&scaling=scale-down&content-scaling=fixed" class="project-btn tertiary">🚀 View Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace the src below with your actual Fitness page image URL -->
+                        <img src="Images/Fitness.png" alt="Fitness Landing Page" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="number" style="display: none;">02</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Fitness Landing Page</h3>
+                        <p class="description">Bold and energetic landing page design for a boxing gym, featuring dynamic layouts and strong visual hierarchy.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">Fitness</span>
+                            <span class="tag">Brand Identity</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="Fitness_Case-study.html" class="project-btn primary">📋 Case Study</a>
+                            <a href="https://www.figma.com/design/5POnBEumP55NQ4cZ91Vubl/Fitness-Cover?node-id=0-1&t=zlt5MgNJV4VlJ0jI-1" class="project-btn secondary">🎨 Figma File</a>
+                            <a href="https://www.figma.com/proto/5POnBEumP55NQ4cZ91Vubl/Fitness-Cover?page-id=0%3A1&node-id=1-2&p=f&viewport=246%2C22%2C0.31&t=S2EiqIzfo5diRrAO-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A2" class="project-btn tertiary">🚀 View Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace the src below with your actual Travel App image URL -->
+                        <img src="Images/Travel App.png" alt="Travel App" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="number" style="display: none;">03</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Travel App</h3>
+                        <p class="description">Complete mobile app design for travel exploration, featuring intuitive navigation and beautiful destination showcases.</p>
+                        <div class="project-tags">
+                            <span class="tag">Mobile App</span>
+                            <span class="tag">UX Design</span>
+                            <span class="tag">Travel</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="Travel_Case-study.html" class="project-btn primary">📋 Case Study</a>
+                            <a href="https://www.figma.com/design/Ekexx7TBLvtQAgdi9IOS1K/Travel-App?node-id=0-1&t=moIqgQCNIG6WTCwJ-1" class="project-btn secondary">🎨 Figma File</a>
+                            <a href="https://www.figma.com/proto/Ekexx7TBLvtQAgdi9IOS1K/Travel-App?page-id=0%3A1&node-id=7-26&p=f&viewport=248%2C13%2C0.61&t=9iw9gMZvGTYZlBgM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5%3A3" class="project-btn tertiary">🚀 View Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace the src below with your actual Interior Design image URL -->
+                        <img src="Images/Website 1.png" alt="Interior Website Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="number" style="display: none;">04</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Interior Website Design</h3>
+                        <p class="description">Elegant website design for interior design services, emphasizing clean aesthetics and professional presentation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">Interior Design</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="Interior_Case-study.html" class="project-btn primary">📋 Case Study</a>
+                            <a href="https://www.figma.com/design/tnwO6bAjEMvLeL5uuj5jiN/website?node-id=0-1&t=c5NKUTqvMnaSMX29-1" class="project-btn secondary">🎨 Figma File</a>
+                            <a href="https://www.figma.com/proto/tnwO6bAjEMvLeL5uuj5jiN/website?page-id=0%3A1&node-id=1-2&p=f&viewport=14%2C387%2C0.09&t=SSA8TBmw1jffLd85-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2" class="project-btn tertiary">🚀 View Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container contact-content">
+            <h2>Let's Work Together</h2>
+            <p class="description">Ready to bring your ideas to life? Let's create something amazing together!</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email Me</h3>
+                    <a href="mailto:anu.designhub@gmail.com">anu.designhub@gmail.com</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Call Me</h3>
+                    <a href="tel:+918317437534">+91-8317437534</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/anu-kulkarni-b0450838a" target="_blank">Connect with me</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">🎨</div>
+                    <h3>Behance</h3>
+                    <a href="https://www.behance.net/anu-kulkarni" target="_blank">View my work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 UI/UX Designer Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '#1a1a1a';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = '#666';
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initial animation for hero section
+        window.addEventListener('load', () => {
+            const heroElements = document.querySelectorAll('#home .animate-on-scroll');
+            heroElements.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
